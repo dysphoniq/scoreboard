@@ -1,0 +1,44 @@
+.activity-counter {
+
+}
+
+.progress-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.progress {
+  flex: 1;
+  height: auto;
+  /* Why is this not the default? */
+  border-radius: 0;
+  align-content: center;
+  justify-content: center;
+}
+.increment {
+  padding-right: 5px;
+}
+.increment .button {
+  height: 30px;
+  width: 30px;
+}
+.numbers {
+  width: 100%;
+}
+.count {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.type {
+  margin-left: 10px;
+}
+.comparison {
+  text-align: right;
+  float: right;
+}
+.progress-bar-container {
+  width: 100%;
+  background-color: #cccccc;
+}
