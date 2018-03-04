@@ -7,7 +7,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const expressMongoDb = require('express-mongo-db');
+//const expressMongoDb = require('express-mongo-db');
 
 const auth = require('./auth');
 const dbApi = require('./routes/db-api');
@@ -16,9 +16,9 @@ const app = express();
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(expressMongoDb(process.env.DB_URI));
+//app.use(expressMongoDb("process.env.REACT_APP_DB_URI"));
 
 app.use('/api/db', dbApi);
 

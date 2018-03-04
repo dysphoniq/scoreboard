@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import ActivityCounter from '../ActivityCounter';
 
-import frustratedMonkey from './frustrated-monkey.gif';
 import './frontpage.css';
 
 const countStyle = {
@@ -42,11 +42,6 @@ class Frontpage extends Component {
             </div>
           </div>
         </div>
-
-        <div>
-          <img src={frustratedMonkey} alt="animated gif of a monkey shoving a laptop off the table" />
-        </div>
-
       </div>
     );
   }

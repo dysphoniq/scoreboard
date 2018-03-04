@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom'
 import { withAuth } from './Auth';
 import ApiDemoPage from './ApiDemoPage';
 import Footer from './Footer';
-import FrontPage from './FrontPage';
+import Root from './Root';
 import Header from './Header';
 import ProfilePage from './ProfilePage';
 
@@ -23,7 +23,7 @@ class App extends Component {
         <section className="section">
           <div className="content">
 
-            <Route exact path="/" component={FrontPage}/>
+            <Route exact path="/" component={Root}/>
 
             {/* send in props for router stuff; send in this.props for auth stuff */}
             <Route path="/api-demo" render={props => <ApiDemoPage {...props} {...this.props} />} />

@@ -1,0 +1,30 @@
+{
+  "today":
+  {
+    "FR" : 4,
+    "CR" : 45,
+    "Mamm" : 18,
+    "DXA" : 0, 
+    "CT" : 22,
+    "US" : 6,
+    "MR" : 6,
+    "NM" : 1,
+    "Referrer" : 21,
+    "Nonreferrer" : 14,
+    "Patient" : 2
+  },
+    "yesterday":
+  {
+    "FR" : 7,
+    "CR" : 51,
+    "Mamm" : 23,
+    "DXA" : 10,
+    "CT" : 10,
+    "US" : 16,
+    "MR" : 8,
+    "NM" : 6,
+    "Referrer" : 14,
+    "Nonreferrer" : 14,
+    "Patient" : 1
+  }
+}
