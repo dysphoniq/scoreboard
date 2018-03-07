@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  background-color: LightGray;
+}
+
+.header-title {
+  font-size: 30px;
+  color: hsl(0, 0%, 21%);
+  font-weight: 600;
+  padding: 6px 0 6px 0;
+}
+
+.login-logout {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.login-logout-button {
+  padding-right: 10px;
+}
+
+.profile-link {
+  padding-right: 10px;
+  text: black;
+}
