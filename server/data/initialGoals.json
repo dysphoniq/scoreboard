@@ -1,0 +1,22 @@
+{
+  "Cases":
+  {
+    "FR" : 5,
+    "CR" : 30,
+    "Mamm" : 10,
+    "DXA" : 5,
+    "CT" : 10,
+    "US" : 10,
+    "MR" : 5,
+    "NM" : 5
+  },
+    "Services":
+  {
+    "Referrer" : 5,
+    "Nonreferrer" : 5,
+    "Patient" : 5,
+    "Chart Review": 2,
+    "Research" : 2,
+    "Shared Cases" : 1
+  }
+}
