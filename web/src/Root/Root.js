@@ -19,7 +19,7 @@ class RootContainer extends Component {
       })
       .catch(function (error) {
         console.log(error);
-      })
+      });
   }
 
   render() {

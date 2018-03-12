@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 var test = require('../data/testData.json');
+var goals = require('../data/initialGoals.json');
+var points = require('../data/initialPointValues.json');
 
 router.get('/testData', function (req, res, next) {
   res.send(test);
@@ -9,17 +11,23 @@ router.get('/testData', function (req, res, next) {
 
 router.get('/user/:userid', function (req, res, next) {
   //TODO: add error handling for db calls
-  res.sendStatus(200);
-  req.db.collection('users').find({ userId: req.params.userid }).toArray(function (err, result) {
+  var collection = req.db.collection('users');
+  collection.find({ userId: req.params.userid }).toArray(function (err, result) {
     if (err) throw err;
     //If user does not have entry, initialize one
-    if (!result.length) {
-      console.log('none found?');
+    if (result && !result.length) {
+      var userInfo = {
+        "userId": req.params.userid,
+        "goals": goals,
+        "points": points
+      }
+      collection.insert(userInfo , function (err, result) {
+        if (err) throw err;
+        res.json(userInfo);
+      })
     } else {
-      console.log('got something');
-      console.log(result);
+      res.json(result)
     }
-    res.json({"test": "ack"});
   });
 });
 

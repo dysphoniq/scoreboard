@@ -32,10 +32,6 @@ class ActivityCounter extends Component {
       });
       fetch(userRequest)
         .then(res => console.log(res))
-        // .then(json => {
-        //   this.setState({ suggestions: json });
-        //   this.posts = json;
-        // })
         .catch(function (error) {
           console.log(error);
         });

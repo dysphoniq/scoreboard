@@ -1,0 +1,22 @@
+{
+  "Cases":
+  {
+    "RF" : 350,
+    "CR" : 21,
+    "Mamm" : 112,
+    "DXA" : 28,
+    "CT" : 110,
+    "US" : 65,
+    "MR" : 150,
+    "NM" : 90
+  },
+    "Services":
+  {
+    "Referrer" : 1,
+    "Nonreferrer" : 1,
+    "Patient" : 1,
+    "Chart Review": 1,
+    "Research" : 1,
+    "Shared Cases" : 1
+  }
+}
