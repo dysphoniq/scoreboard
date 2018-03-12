@@ -14,7 +14,7 @@ class UnprotectedCall extends Component {
 
   componentDidMount() {
 
-    fetch('/api/db/unprotected')
+    fetch('/api/unprotected')
       .then(response => {
         // https://www.tjvantoll.com/2015/09/13/fetch-and-errors/
         if (!response.ok) {

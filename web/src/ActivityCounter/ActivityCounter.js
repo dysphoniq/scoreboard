@@ -10,8 +10,10 @@ class ActivityCounter extends Component {
     }
     this.displayData = this.displayData.bind(this);
     this.incrementCount = this.incrementCount.bind(this);
+
   }
 
+  //TODO: get rid of test data
   componentWillMount() {
     if(this.props.data) {
       if (!this.state.testData) {
@@ -20,8 +22,40 @@ class ActivityCounter extends Component {
         });
       }
     }
+
+    if (!!this.props.profile && this.props.profile.sub !== this.token) {
+      this.token = this.props.profile.sub;
+      let userRequest = new Request('/api/user/' + this.props.profile.sub, {
+        method: 'GET',
+        // this header sends the user token from auth0
+        headers: this.props.getAuthorizationHeader()
+      });
+      fetch(userRequest)
+        .then(res => console.log(res))
+        // .then(json => {
+        //   this.setState({ suggestions: json });
+        //   this.posts = json;
+        // })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   }
 
+  // componentDidUpdate() {
+  //   if (!!this.props.profile && this.props.profile.sub !== this.token) {
+  //     this.token = this.props.profile.sub;
+  //     fetch('/api/users/' + this.props.profile.sub)
+  //       .then(res => res.json())
+  //       .then(json => {
+  //         this.setState({ suggestions: json });
+  //         this.posts = json;
+  //       })
+  //       .catch(function (error) {
+  //         console.log(error);
+  //       });
+  //   }
+  // }
   incrementCount(type) {
     const update = this.state.testData;
     update.today[type]++;

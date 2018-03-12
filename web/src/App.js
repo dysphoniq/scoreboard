@@ -13,7 +13,7 @@ class App extends Component {
   render() {
 
     // this.props has a bunch of stuff in it related to auth0 (from `withAuth` below)
-    // console.log('props', this.props);
+    console.log('props', this.props);
 
     return (
       <div className="App">
@@ -23,7 +23,7 @@ class App extends Component {
         <section className="section">
           <div className="content">
 
-            <Route exact path="/" component={Root}/>
+            <Route exact path="/" render={props => <Root {...props} {...this.props}/>} />
 
             {/* send in props for router stuff; send in this.props for auth stuff */}
             <Route path="/api-demo" render={props => <ApiDemoPage {...props} {...this.props} />} />

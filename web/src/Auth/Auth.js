@@ -70,7 +70,6 @@ function withAuth(WrappedComponent) {
 
           localStorage.setItem('profile', JSON.stringify(profile));
           this.props.history.replace('/');
-
           this.setState({
             'profile': profile
           });

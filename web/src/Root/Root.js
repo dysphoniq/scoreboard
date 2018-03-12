@@ -10,8 +10,7 @@ class RootContainer extends Component {
   }
 
   componentDidMount() {
-
-    fetch('/api/db/testData')
+    fetch('/api/testData')
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -26,7 +25,7 @@ class RootContainer extends Component {
   render() {
     return(
       <div className="container is-fluid">
-        <Root data={this.state.data} />
+        <Root data={this.state.data} {...this.props} />
       </div>
     );
   }
@@ -37,7 +36,7 @@ class Root extends Component {
     if (this.props.data) {
       return (
         <div className="container is-fluid">
-          <ActivityCounter data={this.props.data} />
+          <ActivityCounter {...this.props} />
         </div>);
     } else {
       return null;

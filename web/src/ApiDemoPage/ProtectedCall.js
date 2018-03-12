@@ -14,7 +14,7 @@ class ProtectedCall extends Component {
   }
 
   componentDidMount() {
-    let myRequest = new Request('/api/db/protected', {
+    let myRequest = new Request('/api/protected', {
       method: 'GET',
       // this header sends the user token from auth0
       headers: this.props.getAuthorizationHeader()
