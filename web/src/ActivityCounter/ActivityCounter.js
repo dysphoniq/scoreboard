@@ -22,36 +22,7 @@ class ActivityCounter extends Component {
         });
       }
     }
-
-    if (!!this.props.profile && this.props.profile.sub !== this.token) {
-      this.token = this.props.profile.sub;
-      let userRequest = new Request('/api/user/' + this.props.profile.sub, {
-        method: 'GET',
-        // this header sends the user token from auth0
-        headers: this.props.getAuthorizationHeader()
-      });
-      fetch(userRequest)
-        .then(res => console.log(res))
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
   }
-
-  // componentDidUpdate() {
-  //   if (!!this.props.profile && this.props.profile.sub !== this.token) {
-  //     this.token = this.props.profile.sub;
-  //     fetch('/api/users/' + this.props.profile.sub)
-  //       .then(res => res.json())
-  //       .then(json => {
-  //         this.setState({ suggestions: json });
-  //         this.posts = json;
-  //       })
-  //       .catch(function (error) {
-  //         console.log(error);
-  //       });
-  //   }
-  // }
   incrementCount(type) {
     const update = this.state.testData;
     update.today[type]++;

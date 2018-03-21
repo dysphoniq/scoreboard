@@ -2,11 +2,44 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import 'bulma/css/bulma.css';
 import ActivityCounter from '../ActivityCounter';
+import update from 'immutability-helper';
 
 class RootContainer extends Component {
   constructor () {
     super();
-    this.state = { data: '' }
+    this.state = {
+                    data: '',
+                    profile: ''
+                  }
+  }
+
+  componentWillMount() {
+    if (!!this.props.profile && this.props.profile.sub !== this.token) {
+      this.token = this.props.profile.sub;
+      let userRequest = new Request('/api/user/' + this.props.profile.sub, {
+        method: 'GET',
+        // this header sends the user token from auth0
+        headers: this.props.getAuthorizationHeader()
+      });
+      fetch(userRequest)
+        // .then(res => console.log(res))
+        .then(res => {
+          return res.json();
+        })
+        .then(json => {
+          let newState = update(this.state, {
+            // picture: {
+            //   tags:
+            //     { $set: updatedTags }
+            // }
+            profle: { $set: json}
+          });
+          this.setState(newState);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   }
 
   componentDidMount() {
@@ -25,7 +58,7 @@ class RootContainer extends Component {
   render() {
     return(
       <div className="container is-fluid">
-        <Root data={this.state.data} {...this.props} />
+        <Root data={this.state.data} profile={this.state.profile}{...this.props} />
       </div>
     );
   }
