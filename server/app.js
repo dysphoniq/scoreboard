@@ -15,8 +15,8 @@ const dbApi = require('./routes/db-api');
 const app = express();
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressMongoDb(process.env.REACT_APP_DB_URI));
 

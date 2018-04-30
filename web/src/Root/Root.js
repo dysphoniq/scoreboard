@@ -22,16 +22,11 @@ class RootContainer extends Component {
         headers: this.props.getAuthorizationHeader()
       });
       fetch(userRequest)
-        // .then(res => console.log(res))
         .then(res => {
           return res.json();
         })
         .then(json => {
           let newState = update(this.state, {
-            // picture: {
-            //   tags:
-            //     { $set: updatedTags }
-            // }
             profle: { $set: json}
           });
           this.setState(newState);
@@ -43,22 +38,22 @@ class RootContainer extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/testData')
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          data: json
-        })
+    fetch('/api/today/' + this.props.profile.sub, {method: "GET"})
+    .then(res => res.json())
+    .then(json => {
+      this.setState({
+        data: json
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   render() {
     return(
       <div className="container is-fluid">
-        <Root data={this.state.data} profile={this.state.profile}{...this.props} />
+        <Root data={this.state.data} profile={this.state.profile} {...this.props} />
       </div>
     );
   }

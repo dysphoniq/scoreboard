@@ -1,0 +1,16 @@
+{
+  "entries":
+  {
+    "RF" : 0,
+    "CR" : 0,
+    "Mamm" : 0,
+    "DXA" : 0,
+    "CT" : 0,
+    "US" : 0,
+    "MR" : 0,
+    "NM" : 0,
+    "Referrer" : 0,
+    "Nonreferrer" : 0,
+    "Patient" : 0
+  }
+}

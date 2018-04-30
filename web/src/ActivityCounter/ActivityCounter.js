@@ -6,7 +6,7 @@ class ActivityCounter extends Component {
   constructor () {
     super();
     this.state ={
-      testData: ''
+      data: ''
     }
     this.displayData = this.displayData.bind(this);
     this.incrementCount = this.incrementCount.bind(this);
@@ -16,24 +16,28 @@ class ActivityCounter extends Component {
   //TODO: get rid of test data
   componentWillMount() {
     if(this.props.data) {
-      if (!this.state.testData) {
+      if (!this.state.data) {
         this.setState((prevState, props) => {
-          return {testData: this.props.data};
+          return {data: this.props.data};
         });
       }
     }
   }
+
+  //TODO: update DB
   incrementCount(type) {
-    const update = this.state.testData;
+    const update = this.state.data;
     update.today[type]++;
 
     this.setState(prevState => {
-      return {testData: update}
+      return {data: update}
     });
   }
 
   displayData(data) {
-    var info = Object.entries(data.today).map(([type, count], index)=>{
+    var info = Object.entries(data.entries).map(([type, count], index)=>{
+  //var info = data.entries.map(([type, count], index)=>{
+
       var progress = Math.min(1, count/(data.yesterday[type]));
       progress = Math.max(0.001, progress);
       var progressPercent = progress*100 + "%";
@@ -78,8 +82,8 @@ class ActivityCounter extends Component {
 
   render() {
 
-    if (this.state.testData){
-      var displayData = this.displayData(this.state.testData);
+    if (this.state.data){
+      var displayData = this.displayData(this.state.data);
 
       return (
         <div className="activity-counter">

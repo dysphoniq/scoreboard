@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+const checkJwt = require('../auth').checkJwt;
 var test = require('../data/testData.json');
+var initDay = require('../data/initDay.json');
 var goals = require('../data/initialGoals.json');
 var points = require('../data/initialPointValues.json');
 
@@ -9,6 +11,58 @@ router.get('/testData', function (req, res, next) {
   res.send(test);
 });
 
+//TODO: actually get the protected call to work
+// //TODO: add error handling for db calls
+// router.get('/today', checkJwt, function (req, res, next) {
+//   console.log("testing~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//   if(req.user){
+//     console.log("user sub", req.user.sub);
+//     var today = new Date();
+//     var collection = req.db.collection('entries');
+//     collection.find({userId: req.user.sub, date: today}).toArray(function (err, result) {
+//       if (err) throw err;
+//       //If no entry yet today
+//       if (result && !result.length) {
+//         var todaysInfo = initDay;
+//         todaysInfo.userId = req.user.sub;
+//         todaysInfo.date = today;
+//         collection.insert(todaysInfo, function (err, result) {
+//           if (err) throw err;
+//           res.json(todaysInfo);
+//         });
+//       } else {
+//         res.json(result);
+//       }
+//     })
+//   }
+// });
+
+//TODO: add error handling for DB calls
+router.get('/today/:userid', function (req, res, next) {
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  var collection = req.db.collection('entries');
+  collection.find({userId: req.params.userid, date: today}).toArray(function (err, result) {
+      if (err) throw err;
+      //If no entry yet today
+      if (result && !result.length) {
+        var todaysInfo = initDay;
+        todaysInfo.userId = req.params.userid;
+        todaysInfo.date = today;
+        collection.insert(todaysInfo, function (err, result) {
+          if (err) throw err;
+          res.json(todaysInfo);
+        });
+      } else {
+        console.log("res", result);
+        res.json(result);
+      }
+  })
+
+})
+
+
+//Get info about the logged in user
 router.get('/user/:userid', function (req, res, next) {
   //TODO: add error handling for db calls
   var collection = req.db.collection('users');
